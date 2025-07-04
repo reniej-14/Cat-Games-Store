@@ -1,8 +1,9 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAppStore } from '../store';
 
 
-type JuegoProps = {
+export type JuegoProps = {
     juego: {
         name: string
         image: string
@@ -13,9 +14,11 @@ type JuegoProps = {
 
 export default function Juego({juego} : JuegoProps) {
 
+    const agregarJuego = useAppStore((state) => state.agregarJuego)
+
     const handleClick = () => {
-        console.log(juego)
         toast.success(`${juego.name} agregado al carrito`)
+        agregarJuego(juego)
     }
 
     return (
